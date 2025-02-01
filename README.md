@@ -29,7 +29,7 @@ location-frontend/
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/your-username/location-frontend.git
+   git clone https://github.com/rizzikhan/location-frontend.git
    cd location-frontend
    ```
 
@@ -62,9 +62,11 @@ location-frontend/
 ## 🌍 API Endpoint
 
 The frontend communicates with the backend using this endpoint:
+https://location-frontend-ashy.vercel.app/
 
 ```javascript
-fetch("https://your-backend.vercel.app/location", { method: "POST" });
+fetch("https://location-backend-rho.vercel.app/location", { method: "POST" });
+fetch("https://location-backend-rho.vercel.app/admin", { method: "POST" });
 ```
 
 Make sure to replace the URL with your backend's deployed URL.
